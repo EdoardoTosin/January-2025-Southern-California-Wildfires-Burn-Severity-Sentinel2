@@ -42,9 +42,10 @@ This repository includes an interactive **HTML burn severity map**. The map over
 
 ### How to Use
 
-1. Open the file [index.html](index.html) in your web browser.
-2. The burn severity map will be displayed on top of an **OpenStreetMap layer**.
-3. You can **zoom**, **pan**, and **click on areas** to view data about the burn severity at different points.
+1. Clone or download this repository to your local machine.
+2. Open the file `index.html` in your web browser.
+3. The burn severity map will be displayed on top of an **OpenStreetMap layer**.
+4. You can **zoom**, **pan**, and **click on areas** to view data about the burn severity at different points.
 
 ## Data Generation and Processing Guide
 
