@@ -4,7 +4,7 @@
 
 This repository contains scripts and data for analyzing burn severity of the January 2025 wildfires in Southern California using Sentinel-2 satellite imagery. The analysis utilizes the difference *Normalized Burn Ratio* (**dNBR**) and *Relativized Burn Ratio* (**RBR**) to classify areas based on burn severity.
 
-![](map.png)
+![](map.jpg)
 
 ## Data
 
