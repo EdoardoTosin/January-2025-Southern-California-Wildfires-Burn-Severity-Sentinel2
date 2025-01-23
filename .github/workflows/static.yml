@@ -31,13 +31,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Create temporary directory
+        run: |
+          mkdir temp
+          cp index.html temp/
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload index.html
-          path: './index.html'
+          # Upload the temp directory that contains only index.html
+          path: ./temp
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
