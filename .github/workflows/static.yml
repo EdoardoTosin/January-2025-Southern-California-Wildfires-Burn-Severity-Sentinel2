@@ -5,6 +5,16 @@ on:
   # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
+    paths-ignore:
+      - .gitattributes
+      - .gitignore
+      - README.md
+      - LICENSE
+      - LICENSE-SCRIPTS
+      - data/**
+      - scripts/**
+      - *.jpg
+      - *.png
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
