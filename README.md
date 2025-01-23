@@ -59,7 +59,7 @@ The script and data provided in this repository enable the independent generatio
    - Open the [Copernicus EO Browser](https://browser.dataspace.copernicus.eu/).
 
 2. **Set the Area of Interest**:
-   - Use the **Bounding Box** feature to narrow the search to Southern California. The required coordinates are provided in the file [geo.json](data/geo.json).
+   - Use the **Bounding Box** feature to narrow the search to Southern California. The required coordinates are provided in the file [region_bounding_box.json](data/region_bounding_box.json).
    - Alternatively, manually select the area of interest on the interactive map.
 
 3. **Select Time Range**:
