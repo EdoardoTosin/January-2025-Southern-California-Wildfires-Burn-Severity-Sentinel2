@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains scripts and data for analyzing burn severity of the January 2025 wildfires in Southern California using Sentinel-2 satellite imagery. The analysis utilizes the difference *Normalized Burn Ratio* (**dNBR**) and *Relativized Burn Ratio* (**RBR**) to classify areas based on burn severity.
+Scripts and data for analyzing burn severity of the January 2025 Southern California wildfires using Sentinel-2 satellite imagery. This project explores the use of the *Differenced Normalized Burn Ratio* (**dNBR**) and *Relativized Burn Ratio* (**RBR**) to classify burn severity, leveraging publicly available satellite data and tools like the Copernicus EO Browser for processing and visualization.
 
 ![](map.jpg)
 
@@ -22,7 +22,15 @@ The data sources include:
 - **Sentinel-2 Satellite Imagery**: Imagery from the Copernicus Sentinel-2 mission, accessed via the [Copernicus Data Space Ecosystem](https://dataspace.copernicus.eu/).
 - **Geospatial Coordinates**: The region-specific bounding box data sourced from geospatial metadata and the analysis of fire-affected areas.
 
-These datasets and results facilitate reproducible analysis and can support further research into wildfire impact assessment, remote sensing methodologies, and environmental monitoring.
+These datasets facilitate reproducible analysis and provide a foundation for further research into wildfire impact, remote sensing methods, and environmental monitoring.
+
+### Data Sources
+
+- **Sentinel-2 Satellite Imagery**: 
+  - Provided by the European Union's Copernicus Programme.
+  - Accessed via the [Copernicus Data Space Ecosystem](https://dataspace.copernicus.eu/).
+  - Contains modified Copernicus Sentinel data 2025, processed by Edoardo Tosin.
+- **Geospatial Coordinates**: Derived from geospatial metadata for wildfire impact analysis.
 
 ## Methodology
 
@@ -51,34 +59,32 @@ This repository includes an interactive **HTML burn severity map**. The map over
 
 ## Data Generation and Processing Guide
 
-The script and data provided in this repository enable the independent generation and processing of burn severity analysis using the **Copernicus EO Browser**.
+The scripts provided enable independent reproduction of burn severity maps using the **Copernicus EO Browser**.
 
 ### Steps
 
 1. **Access the Copernicus EO Browser**:
-   - Open the [Copernicus EO Browser](https://browser.dataspace.copernicus.eu/).
+   - Visit [Copernicus EO Browser](https://browser.dataspace.copernicus.eu/).
 
 2. **Set the Area of Interest**:
-   - Use the **Bounding Box** feature to narrow the search to Southern California. The required coordinates are provided in the file [region_bounding_box.json](data/region_bounding_box.json).
-   - Alternatively, manually select the area of interest on the interactive map.
+   - Use the **Create an area of interest** feature to define the study area (coordinates in `data/region_bounding_box.json`).
+   - Alternatively, manually select the region on the interactive map.
 
 3. **Select Time Range**:
-   - Click the **Time Range** icon to define the desired date range (pre-fire and post-fire imagery).
+   - Specify pre- and post-fire dates using the **Time Range** tool.
 
 4. **Load the Custom Script**:
-   - Under the **Layers** tab, select **Custom**, then click **Custom script**.
-   - Choose one of the following methods to load the script:
-     - **Option 1**: Copy the script from [scripts](scripts) folder and paste it directly into the scripting interface.
-     - **Option 2**: Use the **Load script from URL** feature and paste the URL pointing to the script.
+   - Navigate to **Layers** > **Custom** > **Custom script**.
+   - Choose a method to load the script:
+     - **Option 1**: Copy the script from the `scripts` directory and paste it into the browser's scripting interface.
+     - **Option 2**: Use the **Load script from URL** feature to link to the script.
 
 5. **Run the Script**:
-   - Execute the script to process the Sentinel-2 imagery.
-   - The result will be a semi-transparent burn severity map with varying levels of burn severity visualized in gradients of black.
+   - Execute the script to generate a semi-transparent burn severity map.
 
-6. **View and Download the Result**:
-   - You can view the generated burn severity map directly in the Copernicus EO Browser.
-   - If needed, download the processed output image (a Copernicus account is required).
-   - For reference, similar processed images are stored in the **`/assets/`** folder of this repository.
+6. **Download Results**:
+   - Save the processed map image (Copernicus account required).
+   - Reference preprocessed maps stored in the `/assets/` directory.
 
 ## License
 
