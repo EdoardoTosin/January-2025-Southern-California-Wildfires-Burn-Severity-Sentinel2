@@ -52,6 +52,27 @@ function calculateRBR(dNBR, preFireNBR) {
   return dNBR / Math.sqrt(Math.abs(preFireNBR)); // Ensures sensitivity to pre-fire conditions.
 }
 
+// Smooth data using a simple moving average within the same dataset for spatial noise reduction.
+// This function smooths a dataset by applying a moving average filter with a specified window size.
+function smoothData(dataset, windowSize) {
+  let smoothedValues = [];
+  
+  // Loop through each pixel in the dataset
+  for (let i = 0; i < dataset.length; i++) {
+    let sum = 0, count = 0;
+    // Apply moving average on neighboring pixels within the same dataset
+    for (let j = i - Math.floor(windowSize / 2); j <= i + Math.floor(windowSize / 2); j++) {
+      if (j >= 0 && j < dataset.length) {
+        sum += dataset[j];
+        count++;
+      }
+    }
+    smoothedValues.push(sum / count);
+  }
+  
+  return smoothedValues;
+}
+
 // Filter Sentinel-2 scenes for relevant temporal ranges and process pre- and post-fire images.
 // The function retains images strictly within the defined date range and ensures at least one pre- and post-fire scene.
 function preProcessScenes(collections) {
@@ -129,8 +150,15 @@ function evaluatePixel(samples) {
   }
   
   // Compute NBR for pre-fire and post-fire images.
-  const firstNBR = calculateNBR(firstSample.B08, firstSample.B12); // Pre-fire NBR.
-  const lastNBR = calculateNBR(lastSample.B08, lastSample.B12);   // Post-fire NBR.
+  const rawNBRPreFire = calculateNBR(firstSample.B08, firstSample.B12); // Pre-fire NBR.
+  const rawNBRPostFire = calculateNBR(lastSample.B08, lastSample.B12); // Post-fire NBR.
+  
+  // Smooth the NBR data spatially within each dataset
+  const smoothedPreFire = smoothData([rawNBRPreFire], 3);
+  const smoothedPostFire = smoothData([rawNBRPostFire], 3);
+  
+  const firstNBR = smoothedPreFire[0]; // Smoothed pre-fire NBR.
+  const lastNBR = smoothedPostFire[0]; // Smoothed post-fire NBR.
   
   // Calculate the change in NBR (dNBR) to assess vegetation loss.
   const dNBR = firstNBR - lastNBR;
